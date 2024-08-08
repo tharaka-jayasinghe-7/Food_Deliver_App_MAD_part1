@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 9;
+    private static final int DB_VERSION = 10;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -48,7 +48,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String SHOP_IMAGE_COL = "shop_image";
 
     // Item table name and columns
-    private static final String TABLE_ITEM = "item";
+    public static final String TABLE_ITEM = "item";
     private static final String ITEM_ID_COL = "item_id";
     private static final String ITEM_NAME_COL = "item_name";
     private static final String ITEM_DESCRIPTION_COL = "item_description";
@@ -133,7 +133,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_PRICE_COL + " FLOAT,"
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
-                + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_SHOP_ID_COL + " INTEGER,"
                 + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";

@@ -80,8 +80,8 @@ public class DetailedViewActivity extends AppCompatActivity {
         db.close();
     }
 
-    public void viewItemsOnClick(View view){
-        Intent intent = new Intent(this, ItemViewActivity.class);
+    public void addItemsOnClick(View view){
+        Intent intent = new Intent(this, AddItemActivity.class);
         intent.putExtra("shop_id", shopId);
         startActivity(intent);
     }

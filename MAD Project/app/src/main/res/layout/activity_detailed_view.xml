@@ -41,14 +41,24 @@
         android:text="City" />
 
     <Button
-        android:id="@+id/view_menu_item_btn"
+        android:id="@+id/add_menu_item_btn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:backgroundTint="#009688"
+        android:text="Add Menu Items"
+        android:onClick="addItemsOnClick"
+        app:cornerRadius="8dp" />
+
+    <Button
+        android:id="@+id/View_menu_item_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#009688"
         android:text="View Menu Items"
-        android:onClick="viewItemsOnClick"
+
         app:cornerRadius="8dp" />
 
     <TextView
