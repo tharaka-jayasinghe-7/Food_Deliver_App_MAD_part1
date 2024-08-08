@@ -25,7 +25,6 @@ public class UserHomeActivity extends AppCompatActivity {
     private TextView welcomeTextView;
     private TextView locationTextView;
 
-    private Button profileButton;
     private String userEmail;
     private DBHandler DBHandler;
     private List<com.example.foodappmadcw04.Shop> shopList;
@@ -37,7 +36,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         welcomeTextView = findViewById(R.id.welcome_text);
         locationTextView = findViewById(R.id.location_text);
-        profileButton = findViewById(R.id.profile_button);
+        Button profileButton = findViewById(R.id.profile_button);
 
 
         Intent intent = getIntent();
