@@ -299,6 +299,22 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ITEM_NAME_COL, itemName);
+        values.put(ITEM_DESCRIPTION_COL, itemDescription);
+        values.put(ITEM_PRICE_COL, itemPrice);
+        values.put(ITEM_CATEGORY_COL, itemCategory);
+        values.put(ITEM_AVAILABILITY_COL, itemAvailability);
+        values.put(ITEM_IMAGE_COL, itemImage);
+
+        db.insert(TABLE_ITEM, null, values);
+        db.close();
+    }
+
+
 
     public Cursor getAllShops() {
         SQLiteDatabase db = this.getReadableDatabase();
