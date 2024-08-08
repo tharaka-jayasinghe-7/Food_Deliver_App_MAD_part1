@@ -18,6 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImageView;
     private Button editAccountButton;
     private DBHandler dbHandler;
+
     private Button logoutButton;
 
 
@@ -33,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         cityTextView = findViewById(R.id.profile_city);
         profileImageView = findViewById(R.id.profile_image);
         editAccountButton = findViewById(R.id.edit_account_button);
+
         logoutButton = findViewById(R.id.logout_button);
 
 
@@ -65,6 +67,9 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(editIntent);
             }
         });
+
+
+
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
