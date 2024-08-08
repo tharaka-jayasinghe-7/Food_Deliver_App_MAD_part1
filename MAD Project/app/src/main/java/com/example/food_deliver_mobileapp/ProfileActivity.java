@@ -18,6 +18,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImageView;
     private Button editAccountButton;
     private DBHandler dbHandler;
+    private Button logoutButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
         cityTextView = findViewById(R.id.profile_city);
         profileImageView = findViewById(R.id.profile_image);
         editAccountButton = findViewById(R.id.edit_account_button);
+        logoutButton = findViewById(R.id.logout_button);
+
 
         dbHandler = new DBHandler(this);
 
@@ -61,6 +65,16 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(editIntent);
             }
         });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(logoutIntent);
+                finish(); // Optional: close the current activity to prevent the user from going back to it
+            }
+        });
+
     }
 
 }
