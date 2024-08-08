@@ -36,7 +36,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         holder.itemNameTextView.setText(currentItem.getName());
         holder.itemDescriptionTextView.setText(currentItem.getDescription());
-        holder.itemRatingTextView.setText(String.valueOf(currentItem.getRating()));
         holder.itemPriceTextView.setText(String.valueOf(currentItem.getPrice()));
 
         // Set item image if available
@@ -47,7 +46,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
 
         // Use the category if needed
-        String category = currentItem.getCategory();
+        String item_category = currentItem.getCategory();
         // Additional logic can be added here if needed
     }
 
@@ -59,7 +58,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView itemNameTextView;
         TextView itemDescriptionTextView;
-        TextView itemRatingTextView;
         TextView itemPriceTextView;
         ImageView itemImageView;
 
@@ -67,7 +65,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(itemView);
             itemNameTextView = itemView.findViewById(R.id.item_name);
             itemDescriptionTextView = itemView.findViewById(R.id.item_description);
-            itemRatingTextView = itemView.findViewById(R.id.item_rating);
             itemPriceTextView = itemView.findViewById(R.id.item_price);
             itemImageView = itemView.findViewById(R.id.item_image);
         }

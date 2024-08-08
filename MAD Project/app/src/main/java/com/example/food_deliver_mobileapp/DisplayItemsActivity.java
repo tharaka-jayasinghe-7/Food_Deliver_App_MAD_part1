@@ -45,26 +45,24 @@ public class DisplayItemsActivity extends AppCompatActivity {
         if (cursor != null) {
             Log.d("DisplayItemsActivity", "Cursor count: " + cursor.getCount());
             if (cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndex("name");
-                int descriptionIndex = cursor.getColumnIndex("description");
-                int ratingIndex = cursor.getColumnIndex("rating");
-                int priceIndex = cursor.getColumnIndex("price");
-                int imageIndex = cursor.getColumnIndex("image");
-                int categoryIndex = cursor.getColumnIndex("category");
+                int nameIndex = cursor.getColumnIndex("item_name");
+                int descriptionIndex = cursor.getColumnIndex("item_description");
+                int priceIndex = cursor.getColumnIndex("item_price");
+                int imageIndex = cursor.getColumnIndex("item_image");
+                int categoryIndex = cursor.getColumnIndex("item_category");
 
-                if (nameIndex >= 0 && descriptionIndex >= 0 && ratingIndex >= 0 &&
+                if (nameIndex >= 0 && descriptionIndex >= 0 &&
                         priceIndex >= 0 && imageIndex >= 0 && categoryIndex >= 0) {
                     do {
                         String itemName = cursor.getString(nameIndex);
                         String itemDescription = cursor.getString(descriptionIndex);
-                        float itemRating = cursor.getFloat(ratingIndex);
                         float itemPrice = cursor.getFloat(priceIndex);
                         byte[] itemImage = cursor.getBlob(imageIndex);
                         String itemCategory = cursor.getString(categoryIndex);
 
-                        Log.d("DisplayItemsActivity", "Item: " + itemName + ", Category: " + itemCategory);
+                        Log.d("DisplayItemsActivity", "item_name: " + itemName + ", item_category: " + itemCategory);
 
-                        Item item = new Item(itemName, itemDescription, itemRating, itemPrice, itemImage, itemCategory);
+                        Item item = new Item(itemName, itemDescription, itemPrice, itemImage, itemCategory);
                         itemList.add(item);
                     } while (cursor.moveToNext());
                 } else {

@@ -56,6 +56,13 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String ITEM_CATEGORY_COL = "item_category";
     private static final String ITEM_AVAILABILITY_COL = "item_availability";
 
+<<<<<<< Updated upstream
+=======
+    private static final String ITEM_SHOP_ID_COL = "shop_id";
+
+
+
+>>>>>>> Stashed changes
     // Promotion table name and columns
     private static final String TABLE_PROMOTION = "promotion";
     private static final String PROMOTION_ID_COL = "promotion_id";
@@ -126,7 +133,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_PRICE_COL + " FLOAT,"
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
+<<<<<<< Updated upstream
                 + ITEM_AVAILABILITY_COL + " TEXT)";
+=======
+                + ITEM_AVAILABILITY_COL + " TEXT,"
+                + ITEM_SHOP_ID_COL + " INTEGER,"
+                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+
+>>>>>>> Stashed changes
 
         String createPromotionTableQuery = "CREATE TABLE " + TABLE_PROMOTION + " ("
                 + PROMOTION_ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
