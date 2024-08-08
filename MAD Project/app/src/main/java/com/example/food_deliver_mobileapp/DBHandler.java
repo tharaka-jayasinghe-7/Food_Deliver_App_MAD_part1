@@ -133,7 +133,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_PRICE_COL + " FLOAT,"
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
-                + ITEM_AVAILABILITY_COL + " TEXT)";
+                + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_SHOP_ID_COL + " INTEGER,"
                 + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
