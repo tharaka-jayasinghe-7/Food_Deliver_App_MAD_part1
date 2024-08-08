@@ -1,10 +1,12 @@
 package com.example.food_deliver_mobileapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,11 +17,15 @@ public class DetailedViewActivity extends AppCompatActivity {
     private TextView nameView, addressView, cityView, contactView, emailView, openView, closeView;
     private ImageView imageView;
     private DBHandler dbHandler;
+    int shopId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
+
+        Intent intent = getIntent();
+
 
         // Initialize views
         nameView = findViewById(R.id.detailed_name);
@@ -35,7 +41,7 @@ public class DetailedViewActivity extends AppCompatActivity {
         dbHandler = new DBHandler(this);
 
         // Get the shop ID passed from ViewActivity
-        int shopId = getIntent().getIntExtra("id", -1);
+        shopId = getIntent().getIntExtra("shop_id", -1);
 
         // Load shop details from database
         loadShopDetails(shopId);
@@ -43,7 +49,7 @@ public class DetailedViewActivity extends AppCompatActivity {
 
     private void loadShopDetails(int shopId) {
         SQLiteDatabase db = dbHandler.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DBHandler.TABLE_SHOP + " WHERE id=?", new String[]{String.valueOf(shopId)});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DBHandler.TABLE_SHOP + " WHERE shop_id=?", new String[]{String.valueOf(shopId)});
 
         if (cursor.moveToFirst()) {
             String name = cursor.getString(1);
@@ -72,5 +78,11 @@ public class DetailedViewActivity extends AppCompatActivity {
 
         cursor.close();
         db.close();
+    }
+
+    public void viewItemsOnClick(View view){
+        Intent intent = new Intent(this, ItemViewActivity.class);
+        intent.putExtra("shop_id", shopId);
+        startActivity(intent);
     }
 }

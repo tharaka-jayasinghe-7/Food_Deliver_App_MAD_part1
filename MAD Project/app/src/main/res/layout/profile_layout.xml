@@ -19,7 +19,7 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/profile_info"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_launcher_background"
         android:contentDescription="Profile Image" />
 
@@ -28,7 +28,7 @@
         android:layout_below="@id/profile_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
         android:text="Name" />
@@ -130,13 +130,26 @@
 
     <Button
         android:id="@+id/edit_account_button"
-        android:layout_width="170dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/profile_city"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#2196F3"
         android:text="Edit Account"
+        android:textSize="18sp" />
+
+
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_account_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FF0000"
+        android:text="Log Out"
         android:textSize="18sp" />
 
 

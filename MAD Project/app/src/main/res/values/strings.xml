@@ -74,4 +74,9 @@
         <item>Dinner</item>
     </string-array>
 
+    <string-array name="item_availability_options">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
 </resources>
