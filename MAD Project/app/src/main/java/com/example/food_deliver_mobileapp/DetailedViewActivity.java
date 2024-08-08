@@ -1,10 +1,12 @@
 package com.example.food_deliver_mobileapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -72,5 +74,10 @@ public class DetailedViewActivity extends AppCompatActivity {
 
         cursor.close();
         db.close();
+    }
+
+    public void viewItemsOnClick(View view){
+        Intent intent = new Intent(this, ItemViewActivity.class);
+        startActivity(intent);
     }
 }
