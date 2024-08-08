@@ -35,6 +35,19 @@
         android:text="View Shops"
         app:cornerRadius="8dp" />
 
+    <Button
+        android:id="@+id/view_all_orders_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_shop_btn"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="#009688"
+        android:onClick="addNewOnClick"
+        android:text="View Orders"
+        app:cornerRadius="8dp" />
+
     <TextView
         android:id="@+id/welcome_text_view"
         android:layout_width="wrap_content"
@@ -50,7 +63,7 @@
         android:id="@+id/admin_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/welcome_text_view"
+        android:layout_below="@id/view_all_orders_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="Admin Profile" />
