@@ -16,10 +16,10 @@
 
         <ImageView
             android:id="@+id/detailed_image"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_foreground"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground" />
 
     </androidx.cardview.widget.CardView>
 

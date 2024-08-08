@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 8;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -41,6 +41,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String SHOP_NAME_COL = "shop_name";
     private static final String SHOP_ADDRESS_COL = "shop_address";
     private static final String SHOP_CITY_COL = "shop_city";
+    private static final String SHOP_EMAIL_COL = "shop_email";
     private static final String SHOP_CONTACT_COL = "shop_contact";
     private static final String SHOP_OPEN_COL = "shop_open";
     private static final String SHOP_CLOSE_COL = "shop_close";
@@ -114,6 +115,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + SHOP_NAME_COL + " TEXT,"
                 + SHOP_ADDRESS_COL + " TEXT,"
                 + SHOP_CITY_COL + " TEXT,"
+                + SHOP_EMAIL_COL + " TEXT,"
                 + SHOP_CONTACT_COL + " TEXT,"
                 + SHOP_OPEN_COL + " TEXT,"
                 + SHOP_CLOSE_COL + " TEXT,"
@@ -284,18 +286,19 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("name", shopName);
-        values.put("address", shopAddress);
-        values.put("city", shopCity);
-        values.put("contact", shopContact);
-        values.put("email", shopEmail);
-        values.put("open", shopOpen);
-        values.put("close", shopClose);
-        values.put("image", image);
+        values.put(SHOP_NAME_COL, shopName);
+        values.put(SHOP_ADDRESS_COL, shopAddress);
+        values.put(SHOP_CITY_COL, shopCity);
+        values.put(SHOP_CONTACT_COL, shopContact);
+        values.put(SHOP_EMAIL_COL, shopEmail); // Fixed the column key here
+        values.put(SHOP_OPEN_COL, shopOpen);
+        values.put(SHOP_CLOSE_COL, shopClose);
+        values.put(SHOP_IMAGE_COL, image);
 
         db.insert(TABLE_SHOP, null, values);
         db.close();
     }
+
 
     public Cursor getAllShops() {
         SQLiteDatabase db = this.getReadableDatabase();

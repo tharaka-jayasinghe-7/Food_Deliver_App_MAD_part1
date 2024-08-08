@@ -35,7 +35,7 @@ public class DetailedViewActivity extends AppCompatActivity {
         dbHandler = new DBHandler(this);
 
         // Get the shop ID passed from ViewActivity
-        int shopId = getIntent().getIntExtra("id", -1);
+        int shopId = getIntent().getIntExtra("shop_id", -1);
 
         // Load shop details from database
         loadShopDetails(shopId);
@@ -43,7 +43,7 @@ public class DetailedViewActivity extends AppCompatActivity {
 
     private void loadShopDetails(int shopId) {
         SQLiteDatabase db = dbHandler.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DBHandler.TABLE_SHOP + " WHERE id=?", new String[]{String.valueOf(shopId)});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + DBHandler.TABLE_SHOP + " WHERE shop_id=?", new String[]{String.valueOf(shopId)});
 
         if (cursor.moveToFirst()) {
             String name = cursor.getString(1);
