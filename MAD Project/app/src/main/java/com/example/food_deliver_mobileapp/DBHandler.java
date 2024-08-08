@@ -57,7 +57,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String ITEM_CATEGORY_COL = "item_category";
     private static final String ITEM_AVAILABILITY_COL = "item_availability";
 
-    private static final String SHOP_ID_COLF = "shop_id";
+    private static final String ITEM_SHOP_ID_COL = "shop_id";
+
 
 
 
@@ -132,9 +133,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_PRICE_COL + " FLOAT,"
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
+                + ITEM_AVAILABILITY_COL + " TEXT)";
                 + ITEM_AVAILABILITY_COL + " TEXT,"
-                + SHOP_ID_COL + " INTEGER,"
-                + "FOREIGN KEY(" + SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+                + ITEM_SHOP_ID_COL + " INTEGER,"
+                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+
 
 
         String createPromotionTableQuery = "CREATE TABLE " + TABLE_PROMOTION + " ("

@@ -1,43 +1,37 @@
 package com.example.food_deliver_mobileapp;
 
 public class Item {
-    private String name;
-    private String description;
-    private float rating;
-    private float price;
-    private byte[] image;
-    private String category;
+    private final String item_name;
+    private final String item_description;
+    private final float item_price;
+    private final byte[] item_image;
+    private final String item_category;
 
-    public Item(String name, String description, float rating, float price, byte[] image, String category) {
-        this.name = name;
-        this.description = description;
-        this.rating = rating;
-        this.price = price;
-        this.image = image;
-        this.category = category;
+    public Item(String name, String description, float price, byte[] image, String category) {
+        this.item_name = name;
+        this.item_description = description;
+        this.item_price = price;
+        this.item_image = image;
+        this.item_category = category;
     }
 
     public String getName() {
-        return name;
+        return item_name;
     }
 
     public String getDescription() {
-        return description;
-    }
-
-    public float getRating() {
-        return rating;
+        return item_description;
     }
 
     public float getPrice() {
-        return price;
+        return item_price;
     }
 
     public byte[] getImage() {
-        return image;
+        return item_image;
     }
 
     public String getCategory() {
-        return category;
+        return item_category;
     }
 }
