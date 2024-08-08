@@ -3,6 +3,8 @@ package com.example.food_deliver_mobileapp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,8 @@ public class AdminProfileActivity extends AppCompatActivity {
 
     private TextView nameTextView, emailTextView;
     private DBHandler dbHandler;
+    private Button logoutButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,8 @@ public class AdminProfileActivity extends AppCompatActivity {
 
         nameTextView = findViewById(R.id.admin_profile_name);
         emailTextView = findViewById(R.id.admin_profile_email);
+        logoutButton = findViewById(R.id.admin_logout_button);
+
 
         dbHandler = new DBHandler(this);
 
@@ -33,6 +39,17 @@ public class AdminProfileActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirect to AdminStartActivity
+                Intent logoutIntent = new Intent(AdminProfileActivity.this, AdminStartActivity.class);
+                logoutIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(logoutIntent);
+                finish();
+            }
+        });
     }
 
 }
