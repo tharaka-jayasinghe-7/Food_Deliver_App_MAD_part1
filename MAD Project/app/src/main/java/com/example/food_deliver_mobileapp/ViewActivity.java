@@ -127,7 +127,7 @@ public class ViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailedViewActivity.class);
-                    intent.putExtra("id", modal.getId()); // Pass only the ID
+                    intent.putExtra("shop_id", modal.getId()); // Pass only the ID
                     context.startActivity(intent);
                 }
             });
