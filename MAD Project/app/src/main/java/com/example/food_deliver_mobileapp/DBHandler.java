@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 8;
+    private static final int DB_VERSION = 9;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -56,6 +56,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String ITEM_IMAGE_COL = "item_image";
     private static final String ITEM_CATEGORY_COL = "item_category";
     private static final String ITEM_AVAILABILITY_COL = "item_availability";
+
+    private static final String SHOP_ID_COLF = "shop_id";
+
+
 
     // Promotion table name and columns
     private static final String TABLE_PROMOTION = "promotion";
@@ -128,7 +132,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_PRICE_COL + " FLOAT,"
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
-                + ITEM_AVAILABILITY_COL + " TEXT)";
+                + ITEM_AVAILABILITY_COL + " TEXT,"
+                + SHOP_ID_COL + " INTEGER,"
+                + "FOREIGN KEY(" + SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+
 
         String createPromotionTableQuery = "CREATE TABLE " + TABLE_PROMOTION + " ("
                 + PROMOTION_ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -298,6 +305,23 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_SHOP, null, values);
         db.close();
     }
+
+    public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage, int shop_ID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ITEM_NAME_COL, itemName);
+        values.put(ITEM_DESCRIPTION_COL, itemDescription);
+        values.put(ITEM_PRICE_COL, itemPrice);
+        values.put(ITEM_CATEGORY_COL, itemCategory);
+        values.put(ITEM_AVAILABILITY_COL, itemAvailability);
+        values.put(ITEM_IMAGE_COL, itemImage);
+        values.put(SHOP_ID_COL, shop_ID);
+
+        db.insert(TABLE_ITEM, null, values);
+        db.close();
+    }
+
 
 
     public Cursor getAllShops() {
