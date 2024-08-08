@@ -46,9 +46,9 @@
         android:id="@+id/register_button"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:layout_below="@id/get_started_text"
+        android:layout_below="@id/sign_in_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#2196F3"
         android:text="Sign Up"
         android:textSize="24sp" />
@@ -57,9 +57,9 @@
         android:id="@+id/sign_in_button"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:layout_below="@id/register_button"
+        android:layout_below="@id/get_started_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#067E0B"
         android:text="Sign in"
         android:textSize="24sp" />
