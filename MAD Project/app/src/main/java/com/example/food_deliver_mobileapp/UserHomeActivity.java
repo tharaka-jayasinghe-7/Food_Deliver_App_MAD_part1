@@ -120,7 +120,7 @@ public class UserHomeActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 do {
                     int nameIndex = cursor.getColumnIndex("shop_name");
-                    int locationIndex = cursor.getColumnIndex("shop_location");
+                    int locationIndex = cursor.getColumnIndex("shop_city");
                     int imageIndex = cursor.getColumnIndex("shop_image");
 
                     // Check if column indices are valid
