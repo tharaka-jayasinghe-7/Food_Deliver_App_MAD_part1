@@ -139,5 +139,16 @@
         android:text="Edit Account"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="170dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/edit_account_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FF0000"
+        android:text="Log out"
+        android:textSize="18sp" />
+
 
 </RelativeLayout>
