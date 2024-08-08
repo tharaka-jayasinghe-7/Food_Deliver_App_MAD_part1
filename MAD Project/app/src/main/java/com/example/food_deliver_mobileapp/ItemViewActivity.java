@@ -12,15 +12,21 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ItemViewActivity extends AppCompatActivity {
 
+    private int shopId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_item_view);
 
+        Intent intent = getIntent();
+        shopId = intent.getIntExtra("shop_id", -1);
+
     }
     public void addItemsOnClick(View view){
         Intent intent = new Intent(this, AddItemActivity.class);
+        intent.putExtra("shop_id", shopId);
         startActivity(intent);
     }
 }

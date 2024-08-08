@@ -29,6 +29,8 @@ public class AddItemActivity extends AppCompatActivity {
     private Button addItemBtn, uploadImageBtn;
     private DBHandler dbHandler;
 
+    int shopId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class AddItemActivity extends AppCompatActivity {
         coverImageView = findViewById(R.id.item_cover_image_input);
         uploadImageBtn = findViewById(R.id.upload_image_btn);
         addItemBtn = findViewById(R.id.add_item_btn);
+
+        Intent intent = getIntent();
+        shopId = intent.getIntExtra("shop_id", -1);
 
         // Initialize database handler
         dbHandler = new DBHandler(AddItemActivity.this);
@@ -76,13 +81,14 @@ public class AddItemActivity extends AppCompatActivity {
                 String category = categorySpinner.getSelectedItem().toString();
                 String availability = availabilitySpinner.getSelectedItem().toString();
                 byte[] image = imageViewToByte(coverImageView);
+                int shop_ID = shopId;
 
                 if (name.isEmpty() || description.isEmpty() || price.isEmpty() || category.isEmpty() || availability.isEmpty()) {
                     Toast.makeText(AddItemActivity.this, "Please enter all the data", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                dbHandler.addNewItem(name, description, price, category, availability, image);
+                dbHandler.addNewItem(name, description, price, category, availability, image, shop_ID);
 
                 Toast.makeText(AddItemActivity.this, "Item has been added", Toast.LENGTH_SHORT).show();
 
