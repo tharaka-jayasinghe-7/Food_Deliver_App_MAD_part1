@@ -56,6 +56,7 @@
         <activity android:name=".DetailedViewActivity" />
         <activity android:name=".ViewActivity" />
         <activity android:name=".AddActivity" />
+        <activity android:name=".AdminAddPromotionActivity" />
     </application>
 
 </manifest>

@@ -48,4 +48,10 @@ public class AdminHomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewActivity.class);
         startActivity(intent);
     }
+
+    public void addPromotionOnClick(View view){
+        Intent intent = new Intent(this, AdminAddPromotionActivity.class);
+        startActivity(intent);
+    }
+
 }
