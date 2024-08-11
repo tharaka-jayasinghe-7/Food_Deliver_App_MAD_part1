@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -96,4 +97,16 @@ public class DetailedViewActivity extends AppCompatActivity {
         intent.putExtra("shop_id", shopId);
         startActivity(intent);
     }
+
+    public void deleteShopOnClick(View view) {
+
+        boolean result = dbHandler.deleteShop(shopId);
+        if (result) {
+            Toast.makeText(this, "Shop deleted successfully", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Failed to delete shop", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

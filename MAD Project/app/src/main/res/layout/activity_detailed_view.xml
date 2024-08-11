@@ -155,6 +155,7 @@
         android:layout_gravity="center"
         android:backgroundTint="#EC0850"
         android:text="Delete Shop"
-        app:cornerRadius="8dp" />
+        app:cornerRadius="8dp"
+        android:onClick="deleteShopOnClick"/>
 
 </LinearLayout>

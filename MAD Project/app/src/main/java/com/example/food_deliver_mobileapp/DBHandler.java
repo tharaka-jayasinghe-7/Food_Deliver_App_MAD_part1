@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 10;
+    private static final int DB_VERSION = 11;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -99,6 +99,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("PRAGMA foreign_keys = ON;");
+
         String createUsersTableQuery = "CREATE TABLE " + TABLE_USERS + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
@@ -135,7 +138,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_CATEGORY_COL + " TEXT,"
                 + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_SHOP_ID_COL + " INTEGER,"
-                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + ")ON DELETE CASCADE)";
 
 
 
@@ -324,6 +327,20 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         int result = db.update(TABLE_SHOP, values, "shop_id = ?", new String[]{String.valueOf(shopId)});
         return result > 0;
+    }
+
+    public boolean deleteShop(int shopId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int result = db.delete(TABLE_SHOP, "shop_id = ?", new String[]{String.valueOf(shopId)});
+        db.close();
+        return result > 0;
+    }
+
+    private void deleteItemsForShop(int shopId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ITEM, ITEM_SHOP_ID_COL + " = ?", new String[]{String.valueOf(shopId)});
+        db.close();
     }
 
     public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage, int shop_ID) {
