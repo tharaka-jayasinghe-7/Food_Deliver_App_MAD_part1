@@ -308,6 +308,24 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean updateShop(int shopId, String name, String address, String city, String contact, String email, String open, String close, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SHOP_NAME_COL, name);
+        values.put(SHOP_ADDRESS_COL, address);
+        values.put(SHOP_CITY_COL, city);
+        values.put(SHOP_CONTACT_COL, contact);
+        values.put(SHOP_EMAIL_COL, email); // Fixed the column key here
+        values.put(SHOP_OPEN_COL, open);
+        values.put(SHOP_CLOSE_COL, close);
+
+        if (image != null) {
+            values.put(SHOP_IMAGE_COL, image);
+        }
+        int result = db.update(TABLE_SHOP, values, "shop_id = ?", new String[]{String.valueOf(shopId)});
+        return result > 0;
+    }
+
     public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage, int shop_ID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
