@@ -324,6 +324,20 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean updateItem(int itemId, String name, String description, String price, String category, String availability, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("item_name", name);
+        values.put("item_description", description);
+        values.put("item_price", price);
+        values.put("item_category", category);
+        values.put("item_availability", availability);
+        if (image != null) {
+            values.put("item_image", image);
+        }
+        int result = db.update(TABLE_ITEM, values, "item_id = ?", new String[]{String.valueOf(itemId)});
+        return result > 0;
+    }
 
 
     public Cursor getAllShops() {

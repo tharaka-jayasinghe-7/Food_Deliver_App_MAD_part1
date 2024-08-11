@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -88,6 +89,8 @@ public class ViewItemActivity extends AppCompatActivity {
             TextView txtItemName, txtItemDescription, txtItemPrice, txtItemCategory, txtItemAvailability;
             ImageView itemImageView;
             CardView cardView;
+
+            Button btnItemEdit;
         }
 
         @Override
@@ -119,6 +122,7 @@ public class ViewItemActivity extends AppCompatActivity {
                 holder.txtItemAvailability = convertView.findViewById(R.id.item_availability_view);
                 holder.itemImageView = convertView.findViewById(R.id.item_image_view);
                 holder.cardView = convertView.findViewById(R.id.cardview2);
+                holder.btnItemEdit = convertView.findViewById(R.id.btn_item_edit);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -136,11 +140,11 @@ public class ViewItemActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
             holder.itemImageView.setImageBitmap(bitmap);
 
-            holder.cardView.setOnClickListener(new View.OnClickListener() {
+            holder.btnItemEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, DetailedViewActivity.class);
-                    intent.putExtra("item_id", modal.getId()); // Pass only the ID
+                    Intent intent = new Intent(context, EditItemActivity.class);
+                    intent.putExtra("item_id", modal.getId()); // Pass the item ID
                     context.startActivity(intent);
                 }
             });

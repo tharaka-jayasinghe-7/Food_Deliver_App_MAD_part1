@@ -70,6 +70,25 @@
             android:layout_below="@+id/item_category_view"
             android:layout_centerInParent="true"/>
 
+        <Button
+            android:id="@+id/btn_item_edit"
+            android:layout_below="@+id/item_availability_view"
+            android:text="Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/btn_item_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_item_edit"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#E91E63"
+            android:gravity="center"
+            android:text="Delete" />
+
 
 
 
