@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 11;
+    private static final int DB_VERSION = 12;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -331,17 +331,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean deleteShop(int shopId) {
         SQLiteDatabase db = this.getWritableDatabase();
-
+        db.delete(TABLE_ITEM, ITEM_SHOP_ID_COL + " = ?", new String[]{String.valueOf(shopId)});
         int result = db.delete(TABLE_SHOP, "shop_id = ?", new String[]{String.valueOf(shopId)});
         db.close();
         return result > 0;
     }
 
-    private void deleteItemsForShop(int shopId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ITEM, ITEM_SHOP_ID_COL + " = ?", new String[]{String.valueOf(shopId)});
-        db.close();
-    }
 
     public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage, int shop_ID) {
         SQLiteDatabase db = this.getWritableDatabase();
