@@ -1,6 +1,6 @@
 package com.example.food_deliver_mobileapp;
 
-import static com.example.food_deliver_mobileapp.DBHandler.TABLE_SHOP;
+import static com.example.food_deliver_mobileapp.DBHandler.TABLE_ITEM;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,63 +23,70 @@ import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
-public class ViewActivity extends AppCompatActivity {
+public class ViewItemActivity extends AppCompatActivity {
 
     DBHandler dbHandler;
     SQLiteDatabase sqLiteDatabase;
     ListView lv;
-    ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList = new ArrayList<>();
+
+    int shopId;
+    ArrayList<ItemModal> modalArrayList = new ArrayList<ItemModal>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_view);
+        setContentView(R.layout.activity_view_item);
+
+        Intent intent = getIntent();
+        shopId = intent.getIntExtra("shop_id", -1);
 
         dbHandler = new DBHandler(this);
         findid();
         displayData();
+
     }
 
     private void displayData() {
         sqLiteDatabase = dbHandler.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_SHOP, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_ITEM + " WHERE shop_id=?", new String[]{String.valueOf(shopId)});
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String name = cursor.getString(1);
-            String address = cursor.getString(2);
-            String city = cursor.getString(3);
-            String contact = cursor.getString(4);
-            String email = cursor.getString(5);
-            String open = cursor.getString(6);
-            String close = cursor.getString(7);
-            byte[] image = cursor.getBlob(8);
+            String description = cursor.getString(2);
+            String price = cursor.getString(3);
+            byte[] image = cursor.getBlob(4);
+            String category = cursor.getString(5);
+            String availability = cursor.getString(6);
+            int shopID = cursor.getInt(7);
 
-            modalArrayList.add(new com.example.food_deliver_mobileapp.ShopModal(id, name, address, city, contact, email, open, close, image));
+            // Corrected to add data to ItemModal
+            modalArrayList.add(new ItemModal(id, name, description, price, category, availability, image, shopID));
         }
-        Custom adapter = new Custom(this, R.layout.singledata, modalArrayList);
+        Custom1 adapter = new Custom1(this, R.layout.single_item_data, modalArrayList);
         lv.setAdapter(adapter);
     }
 
+
     private void findid() {
-        lv = findViewById(R.id.lv);
+        lv = findViewById(R.id.lv2);
     }
 
-    private class Custom extends BaseAdapter {
+    private class Custom1 extends BaseAdapter {
 
         private Context context;
         private int layout;
-        private ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList;
+        private ArrayList<ItemModal> modalArrayList;  // Use ItemModal instead of ShopModal
 
-        public Custom(Context context, int layout, ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList) {
+        public Custom1(Context context, int layout, ArrayList<ItemModal> modalArrayList) {
             this.context = context;
             this.layout = layout;
             this.modalArrayList = modalArrayList;
         }
 
         private class ViewHolder {
-            TextView txtname, txtcity;
-            ImageView imageView;
+            TextView txtItemName, txtItemDescription, txtItemPrice, txtItemCategory, txtItemAvailability;
+            ImageView itemImageView;
             CardView cardView;
         }
 
@@ -105,29 +112,35 @@ public class ViewActivity extends AppCompatActivity {
             if (convertView == null) {
                 convertView = inflater.inflate(layout, parent, false);
                 holder = new ViewHolder();
-                holder.txtname = convertView.findViewById(R.id.name_view);
-                holder.txtcity = convertView.findViewById(R.id.city_view);
-                holder.imageView = convertView.findViewById(R.id.image_view);
-                holder.cardView = convertView.findViewById(R.id.cardview);
+                holder.txtItemName = convertView.findViewById(R.id.item_name_view);  // Update with correct ID
+                holder.txtItemDescription = convertView.findViewById(R.id.item_description_view);
+                holder.txtItemPrice = convertView.findViewById(R.id.item_price_view);
+                holder.txtItemCategory = convertView.findViewById(R.id.item_category_view);
+                holder.txtItemAvailability = convertView.findViewById(R.id.item_availability_view);
+                holder.itemImageView = convertView.findViewById(R.id.item_image_view);
+                holder.cardView = convertView.findViewById(R.id.cardview2);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            com.example.food_deliver_mobileapp.ShopModal modal = modalArrayList.get(position);
+            ItemModal modal = modalArrayList.get(position);  // Correct to use ItemModal
 
-            holder.txtname.setText(modal.getName());
-            holder.txtcity.setText(modal.getCity());
+            holder.txtItemName.setText(modal.getName());
+            holder.txtItemDescription.setText(modal.getDescription());
+            holder.txtItemPrice.setText(modal.getPrice());
+            holder.txtItemCategory.setText(modal.getCategory());
+            holder.txtItemAvailability.setText(modal.getAvailability());
 
             byte[] image = modal.getImage();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-            holder.imageView.setImageBitmap(bitmap);
+            holder.itemImageView.setImageBitmap(bitmap);
 
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailedViewActivity.class);
-                    intent.putExtra("shop_id", modal.getId()); // Pass only the ID
+                    intent.putExtra("item_id", modal.getId()); // Pass only the ID
                     context.startActivity(intent);
                 }
             });
@@ -135,4 +148,6 @@ public class ViewActivity extends AppCompatActivity {
             return convertView;
         }
     }
+
+
 }

@@ -85,4 +85,9 @@ public class DetailedViewActivity extends AppCompatActivity {
         intent.putExtra("shop_id", shopId);
         startActivity(intent);
     }
+    public void viewItemsOnClick(View view){
+        Intent intent = new Intent(this, ViewItemActivity.class);
+        intent.putExtra("shop_id", shopId);
+        startActivity(intent);
+    }
 }

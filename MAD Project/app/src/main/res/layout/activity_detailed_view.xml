@@ -58,6 +58,7 @@
         android:layout_gravity="center"
         android:backgroundTint="#009688"
         android:text="View Menu Items"
+        android:onClick="viewItemsOnClick"
 
         app:cornerRadius="8dp" />
 
