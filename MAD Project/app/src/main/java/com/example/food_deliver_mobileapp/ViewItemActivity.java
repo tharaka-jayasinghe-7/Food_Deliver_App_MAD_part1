@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -90,7 +91,7 @@ public class ViewItemActivity extends AppCompatActivity {
             ImageView itemImageView;
             CardView cardView;
 
-            Button btnItemEdit;
+            Button btnItemEdit,btnItemDelete;
         }
 
         @Override
@@ -123,6 +124,7 @@ public class ViewItemActivity extends AppCompatActivity {
                 holder.itemImageView = convertView.findViewById(R.id.item_image_view);
                 holder.cardView = convertView.findViewById(R.id.cardview2);
                 holder.btnItemEdit = convertView.findViewById(R.id.btn_item_edit);
+                holder.btnItemDelete = convertView.findViewById(R.id.btn_item_delete);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -146,6 +148,17 @@ public class ViewItemActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, EditItemActivity.class);
                     intent.putExtra("item_id", modal.getId()); // Pass the item ID
                     context.startActivity(intent);
+                }
+            });
+
+            holder.btnItemDelete.setOnClickListener(v -> {
+                boolean isDeleted = dbHandler.deleteItem(modal.getId());
+                if (isDeleted) {
+                    Toast.makeText(ViewItemActivity.this, "Item has been deleted", Toast.LENGTH_SHORT).show();
+
+                    recreate();
+                } else {
+                    Toast.makeText(ViewItemActivity.this, "Delete failed", Toast.LENGTH_SHORT).show();
                 }
             });
 

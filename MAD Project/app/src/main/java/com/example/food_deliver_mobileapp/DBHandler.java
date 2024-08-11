@@ -339,6 +339,14 @@ public class DBHandler extends SQLiteOpenHelper {
         return result > 0;
     }
 
+    public boolean deleteItem(int itemId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_ITEM, "item_id = ?", new String[]{String.valueOf(itemId)});
+        db.close();
+        return result > 0;
+    }
+
+
 
     public Cursor getAllShops() {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -145,5 +145,5 @@ public class EditItemActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         return outputStream.toByteArray();
     }
-    
+
 }
