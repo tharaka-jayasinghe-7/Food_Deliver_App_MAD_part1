@@ -394,4 +394,19 @@ public class DBHandler extends SQLiteOpenHelper {
                 null);
     }
 
+
+    public void addPromotion(String name, String description, float percentage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(PROMOTION_NAME_COL, name);
+        values.put(PROMOTION_DESCRIPTION_COL, description);
+        values.put(PROMOTION_PERCENTAGE_COL, percentage);
+
+        // Inserting Row
+        db.insert(TABLE_PROMOTION, null, values);
+        db.close();
+    }
+
+
 }

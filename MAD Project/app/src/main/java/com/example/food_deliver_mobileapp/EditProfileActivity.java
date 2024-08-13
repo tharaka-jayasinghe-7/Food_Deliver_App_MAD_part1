@@ -78,6 +78,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 if (name.isEmpty() || phone.isEmpty() || address.isEmpty() || city.isEmpty()) {
                     Toast.makeText(EditProfileActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                } else if (!name.matches("[a-zA-Z ]+")) {
+                    Toast.makeText(EditProfileActivity.this, "Name can only contain letters", Toast.LENGTH_SHORT).show();
+                } else if (!phone.matches("\\d{10}")) {
+                    Toast.makeText(EditProfileActivity.this, "Phone number must be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                } else if (!city.matches("[a-zA-Z ]+")) {
+                    Toast.makeText(EditProfileActivity.this, "City can only contain letters", Toast.LENGTH_SHORT).show();
                 } else {
                     dbHandler.updateUser(name, phone, address, city, selectedBitmap, email);
 

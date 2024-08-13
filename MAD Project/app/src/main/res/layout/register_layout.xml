@@ -45,6 +45,15 @@
             android:backgroundTint="#E91E63"
             android:text="@string/select_image" />
 
+        <Button
+            android:id="@+id/capture_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Capture Image" />
+
     <TextView
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
