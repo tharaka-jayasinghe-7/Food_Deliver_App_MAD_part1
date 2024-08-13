@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Database name and version
     private static final String DB_NAME = "foodApp.db";
-    private static final int DB_VERSION = 9;
+    private static final int DB_VERSION = 12;
 
     // User table name and columns
     private static final String TABLE_USERS = "users";
@@ -48,7 +48,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String SHOP_IMAGE_COL = "shop_image";
 
     // Item table name and columns
-    private static final String TABLE_ITEM = "item";
+    public static final String TABLE_ITEM = "item";
     private static final String ITEM_ID_COL = "item_id";
     private static final String ITEM_NAME_COL = "item_name";
     private static final String ITEM_DESCRIPTION_COL = "item_description";
@@ -99,6 +99,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("PRAGMA foreign_keys = ON;");
+
         String createUsersTableQuery = "CREATE TABLE " + TABLE_USERS + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COL + " TEXT,"
@@ -134,9 +137,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 + ITEM_IMAGE_COL + " BLOB,"
                 + ITEM_CATEGORY_COL + " TEXT,"
                 + ITEM_AVAILABILITY_COL + " TEXT,"
-                + ITEM_AVAILABILITY_COL + " TEXT,"
                 + ITEM_SHOP_ID_COL + " INTEGER,"
-                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + "))";
+                + "FOREIGN KEY(" + ITEM_SHOP_ID_COL + ") REFERENCES " + TABLE_SHOP + "(" + SHOP_ID_COL + ")ON DELETE CASCADE)";
 
 
 
@@ -309,6 +311,33 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean updateShop(int shopId, String name, String address, String city, String contact, String email, String open, String close, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SHOP_NAME_COL, name);
+        values.put(SHOP_ADDRESS_COL, address);
+        values.put(SHOP_CITY_COL, city);
+        values.put(SHOP_CONTACT_COL, contact);
+        values.put(SHOP_EMAIL_COL, email); // Fixed the column key here
+        values.put(SHOP_OPEN_COL, open);
+        values.put(SHOP_CLOSE_COL, close);
+
+        if (image != null) {
+            values.put(SHOP_IMAGE_COL, image);
+        }
+        int result = db.update(TABLE_SHOP, values, "shop_id = ?", new String[]{String.valueOf(shopId)});
+        return result > 0;
+    }
+
+    public boolean deleteShop(int shopId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ITEM, ITEM_SHOP_ID_COL + " = ?", new String[]{String.valueOf(shopId)});
+        int result = db.delete(TABLE_SHOP, "shop_id = ?", new String[]{String.valueOf(shopId)});
+        db.close();
+        return result > 0;
+    }
+
+
     public void addNewItem(String itemName, String itemDescription, String itemPrice, String itemCategory, String itemAvailability, byte[] itemImage, int shop_ID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -323,6 +352,28 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.insert(TABLE_ITEM, null, values);
         db.close();
+    }
+
+    public boolean updateItem(int itemId, String name, String description, String price, String category, String availability, byte[] image) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("item_name", name);
+        values.put("item_description", description);
+        values.put("item_price", price);
+        values.put("item_category", category);
+        values.put("item_availability", availability);
+        if (image != null) {
+            values.put("item_image", image);
+        }
+        int result = db.update(TABLE_ITEM, values, "item_id = ?", new String[]{String.valueOf(itemId)});
+        return result > 0;
+    }
+
+    public boolean deleteItem(int itemId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_ITEM, "item_id = ?", new String[]{String.valueOf(itemId)});
+        db.close();
+        return result > 0;
     }
 
 

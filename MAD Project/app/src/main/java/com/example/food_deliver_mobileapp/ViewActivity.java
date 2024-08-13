@@ -28,7 +28,7 @@ public class ViewActivity extends AppCompatActivity {
     DBHandler dbHandler;
     SQLiteDatabase sqLiteDatabase;
     ListView lv;
-    ArrayList<com.example.cw4.ShopModal> modalArrayList = new ArrayList<>();
+    ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class ViewActivity extends AppCompatActivity {
             String close = cursor.getString(7);
             byte[] image = cursor.getBlob(8);
 
-            modalArrayList.add(new com.example.cw4.ShopModal(id, name, address, city, contact, email, open, close, image));
+            modalArrayList.add(new com.example.food_deliver_mobileapp.ShopModal(id, name, address, city, contact, email, open, close, image));
         }
         Custom adapter = new Custom(this, R.layout.singledata, modalArrayList);
         lv.setAdapter(adapter);
@@ -69,9 +69,9 @@ public class ViewActivity extends AppCompatActivity {
 
         private Context context;
         private int layout;
-        private ArrayList<com.example.cw4.ShopModal> modalArrayList;
+        private ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList;
 
-        public Custom(Context context, int layout, ArrayList<com.example.cw4.ShopModal> modalArrayList) {
+        public Custom(Context context, int layout, ArrayList<com.example.food_deliver_mobileapp.ShopModal> modalArrayList) {
             this.context = context;
             this.layout = layout;
             this.modalArrayList = modalArrayList;
@@ -114,7 +114,7 @@ public class ViewActivity extends AppCompatActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            com.example.cw4.ShopModal modal = modalArrayList.get(position);
+            com.example.food_deliver_mobileapp.ShopModal modal = modalArrayList.get(position);
 
             holder.txtname.setText(modal.getName());
             holder.txtcity.setText(modal.getCity());
