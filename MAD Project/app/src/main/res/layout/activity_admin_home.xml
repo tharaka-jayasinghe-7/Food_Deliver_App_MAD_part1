@@ -104,8 +104,40 @@
             app:cornerRadius="15dp" />
 
         <TextView
-            android:id="@+id/title_analytics"
+            android:id="@+id/title_promotion"
             android:layout_below="@id/view_all_orders_btn"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:text="Manage Promotions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/title_promotion2"
+            android:layout_below="@id/title_promotion"
+            android:text="Manage all promotions here"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/add_promotion_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/title_promotion"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#009688"
+            android:onClick="addPromotionOnClick"
+            android:text="Add Promotion"
+            app:cornerRadius="8dp" />
+
+        <TextView
+            android:id="@+id/title_analytics"
+            android:layout_below="@id/add_promotion_btn"
             android:layout_marginTop="25dp"
             android:layout_centerHorizontal="true"
             android:textSize="30dp"
@@ -133,6 +165,7 @@
             android:backgroundTint="#009688"
             android:onClick="addNewOnClick"
             android:text="Analytics panel"
+            android:layout_marginBottom="30dp"
             app:cornerRadius="15dp" />
 
         <TextView
@@ -144,19 +177,6 @@
             android:text="Welcome, Admin"
             android:textSize="15dp"
             android:textColor="@color/cardview_light_background" />
-    <Button
-        android:id="@+id/add_promotion_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_all_orders_btn"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="8dp"
-        android:backgroundTint="#009688"
-        android:onClick="addPromotionOnClick"
-        android:text="Add Promotion"
-        app:cornerRadius="8dp" />
-
 
         <Button
             android:id="@+id/admin_profile_button"
