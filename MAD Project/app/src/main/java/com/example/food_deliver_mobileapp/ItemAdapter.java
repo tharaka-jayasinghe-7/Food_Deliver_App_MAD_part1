@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +16,9 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
     private final Context context;
-    private final List<Item> itemList;
+    private final List<com.example.food_deliver_mobileapp.Item> itemList;
 
-    public ItemAdapter(Context context, List<Item> itemList) {
+    public ItemAdapter(Context context, List<com.example.food_deliver_mobileapp.Item> itemList) {
         this.context = context;
         this.itemList = itemList;
     }
@@ -33,7 +32,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Item currentItem = itemList.get(position);
+        com.example.food_deliver_mobileapp.Item  currentItem = itemList.get(position);
 
         holder.itemNameTextView.setText(currentItem.getName());
         holder.itemDescriptionTextView.setText(currentItem.getDescription());
@@ -46,22 +45,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             holder.itemImageView.setImageBitmap(bitmap);
         }
 
-        // Set up the Order Now button
-        holder.orderNowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Send the notification when the button is clicked
-                NotificationUtils.createNotificationChannel(context);
-                NotificationUtils.sendNotification(
-                        context,
-                        "Order Placed",
-                        "Your order has been placed successfully."
-                );
-            }
-        });
-
         // Use the category if needed
-        String itemCategory = currentItem.getCategory();
+        String item_category = currentItem.getCategory();
         // Additional logic can be added here if needed
     }
 
@@ -75,7 +60,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         TextView itemDescriptionTextView;
         TextView itemPriceTextView;
         ImageView itemImageView;
-        Button orderNowButton;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,7 +67,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             itemDescriptionTextView = itemView.findViewById(R.id.item_description);
             itemPriceTextView = itemView.findViewById(R.id.item_price);
             itemImageView = itemView.findViewById(R.id.item_image);
-            orderNowButton = itemView.findViewById(R.id.orderNowButton); // Add the button reference
         }
     }
 }
