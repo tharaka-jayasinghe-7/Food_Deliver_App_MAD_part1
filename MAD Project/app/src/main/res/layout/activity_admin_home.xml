@@ -1,86 +1,194 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminHomeActivity">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+    android:fillViewport="true">
 
-    <Button
-        android:id="@+id/add_new_shop_btn"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="8dp"
-        android:backgroundTint="#009688"
-        android:onClick="addNewOnClick"
-        android:text="Add New Shop"
-        app:cornerRadius="8dp" />
+        tools:context=".AdminHomeActivity">
 
-    <Button
-        android:id="@+id/view_shop_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_new_shop_btn"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:backgroundTint="#009688"
-        android:onClick="viewShopsOnClick"
-        android:text="View Shops"
-        app:cornerRadius="8dp" />
+        <View
+            android:id="@+id/admin_bg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/admin_bg"/>
 
-    <Button
-        android:id="@+id/view_all_orders_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_shop_btn"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="8dp"
-        android:backgroundTint="#009688"
-        android:onClick="addNewOnClick"
-        android:text="View Orders"
-        app:cornerRadius="8dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Admin Dashboard"
+            android:layout_marginTop="55dp"
+            android:textSize="27dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"/>
 
-    <Button
-        android:id="@+id/add_promotion_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_all_orders_btn"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="8dp"
-        android:backgroundTint="#009688"
-        android:onClick="addPromotionOnClick"
-        android:text="Add Promotion"
-        app:cornerRadius="8dp" />
+        <TextView
+            android:id="@+id/title_manage_shops"
+            android:layout_below="@id/admin_bg"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:text="Manage shops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/welcome_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Welcome, Admin"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
+        <TextView
+            android:id="@+id/title_manage_shops2"
+            android:layout_below="@id/title_manage_shops"
+            android:text="manage shops and items"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/admin_profile_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_promotion_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Admin Profile" />
+        <Button
+            android:id="@+id/add_new_shop_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/title_manage_shops"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#009688"
+            android:onClick="addNewOnClick"
+            android:text="Add New Shop"
+            app:cornerRadius="15dp" />
 
+        <Button
+            android:id="@+id/view_shop_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/add_new_shop_btn"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#009688"
+            android:onClick="viewShopsOnClick"
+            android:text="View Shops"
+            app:cornerRadius="15dp" />
 
+        <TextView
+            android:id="@+id/title_manage_orders"
+            android:layout_below="@id/view_shop_btn"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:text="Manage Orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/title_manage_orders2"
+            android:layout_below="@id/title_manage_orders"
+            android:text="manage all the orders"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/view_all_orders_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/title_manage_orders"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#009688"
+            android:onClick="addNewOnClick"
+            android:text="Manage Orders"
+            app:cornerRadius="15dp" />
+
+        <TextView
+            android:id="@+id/title_promotion"
+            android:layout_below="@id/view_all_orders_btn"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:text="Manage Promotions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/title_promotion2"
+            android:layout_below="@id/title_promotion"
+            android:text="Manage all promotions here"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/add_promotion_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/title_promotion"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#009688"
+            android:onClick="addPromotionOnClick"
+            android:text="Add Promotion"
+            app:cornerRadius="8dp" />
+
+        <TextView
+            android:id="@+id/title_analytics"
+            android:layout_below="@id/add_promotion_btn"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:text="Data Analytics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/title_analytics2"
+            android:layout_below="@id/title_analytics"
+            android:text="Analytics for all the data"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/light_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/analytics_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/title_analytics"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#009688"
+            android:onClick="addNewOnClick"
+            android:text="Analytics panel"
+            android:layout_marginBottom="30dp"
+            app:cornerRadius="15dp" />
+
+        <TextView
+            android:id="@+id/welcome_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="90dp"
+            android:text="Welcome, Admin"
+            android:textSize="15dp"
+            android:textColor="@color/cardview_light_background" />
+
+        <Button
+            android:id="@+id/admin_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcome_text_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#0D5B54"
+            android:text="Admin Profile"
+            app:cornerRadius="15dp"/>
+
+    </RelativeLayout>
+
+</ScrollView>

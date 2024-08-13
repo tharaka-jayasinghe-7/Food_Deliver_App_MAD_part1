@@ -8,11 +8,13 @@
     android:layout_marginTop="60dp"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp"
-    tools:context=".ViewActivity">
+    tools:context=".ViewItemActivity">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv"/>
+        android:id="@+id/lv2"/>
 
 </LinearLayout>
+
+

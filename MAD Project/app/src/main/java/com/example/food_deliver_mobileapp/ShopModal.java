@@ -1,4 +1,4 @@
-package com.example.cw4;
+package com.example.food_deliver_mobileapp;
 
 public class ShopModal {
 
